@@ -1,0 +1,23 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - main
+
+stages:
+- stage: Received
+  displayName: BOink
+  jobs:
+  - job: yo
+    steps:
+    - task: AzureCLI@2
+      displayName: Azure CLI
+      inputs:
+          azureSubscription: DemoAZPipe
+          scriptType: bash
+          scriptLocation: inlineScript
+          inlineScript: |
+              az --version
+              az account show
+
+
